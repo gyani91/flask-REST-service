@@ -43,6 +43,7 @@ def create_app(config_type="dev"):
 config_type_ = os.environ["CONFIG_TYPE"]
 app, manager, ma, api, db = create_app(config_type=config_type_)
 
+
 class Document(db.Model):
     __tablename__ = "documents"
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -52,10 +53,12 @@ class Document(db.Model):
     def __repr__(self):
         return '<Document %s>' % self.uuid
 
+
 class DocumentSchema(ma.Schema):
     class Meta:
         fields = ("id", "text")
         model = Document
+
 
 class SummarySchema(ma.Schema):
     class Meta:
@@ -69,7 +72,7 @@ summary_schema = SummarySchema()
 
 class DocumentListResource(Resource):
     def post(self):
-
+        print(request)
         new_document = Document(
             text=request.json['text'],
             summary=generate_summary(request.json['text'], top_n=1),
@@ -77,6 +80,7 @@ class DocumentListResource(Resource):
         db.session.add(new_document)
         db.session.commit()
         return new_document.id
+
 
 class DocumentResource(Resource):
     def get(self, document_id):
@@ -99,6 +103,7 @@ class DocumentResource(Resource):
         db.session.delete(document)
         db.session.commit()
         return '', 204
+
 
 class SummaryResource(Resource):
     def get(self, document_id):

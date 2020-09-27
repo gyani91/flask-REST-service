@@ -10,6 +10,7 @@ dependencies:
     - Flask-RESTful
     - flask-marshmallow
     - psycopg2-binary
+    - requests
     - pytest==5.4.1
     - SQLAlchemy==1.3.13
     - black==19.10b0

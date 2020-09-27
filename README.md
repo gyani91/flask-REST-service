@@ -1,10 +1,11 @@
 # flask-REST-service
 
+A flask RESTful API service that uses SQLAlchemy to store data into a PostgreSQL database. The text summarization is done using Natural Language Toolkit.
+
 ## Requirements
 
 * Python = 3.7
 * Postgres >= 10.0
-* Flask == 1.1.1
 * everything in Conda environment.yml file
 
 ## Installation 
@@ -37,6 +38,29 @@ To view the history and current version
 ~~~
 FLASK_APP=run.py flask db history
 FLASK_APP=run.py flask db current
+~~~
+
+## Running the flask app
+~~~
+export FLASK_APP=run.py
+flask run
+~~~
+
+## Using API with cURL utility
+### Storing a document
+~~~
+curl http://localhost:5000/documents -X POST -H "Content-Type: application/json" -d '{"text":<contents of the document>}
+~~~
+
+
+### Retrieving a document
+~~~
+curl http://localhost:5000/documents/<document_id>
+~~~
+
+### Retrieving a summary
+~~~
+curl http://localhost:5000/summary/<document_id>
 ~~~
 
 ### Code standards
