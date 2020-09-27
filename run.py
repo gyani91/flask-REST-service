@@ -8,6 +8,8 @@ from flask_script import Manager
 from sqlalchemy import Column, Integer, String
 import os
 
+from lib.utils.summarization_utils import generate_summary
+
 
 def create_app(config_type="dev"):
     if config_type == "dev":
@@ -67,9 +69,10 @@ summary_schema = SummarySchema()
 
 class DocumentListResource(Resource):
     def post(self):
+
         new_document = Document(
             text=request.json['text'],
-            summary=request.json['text'],
+            summary=generate_summary(request.json['text'], top_n=1),
         )
         db.session.add(new_document)
         db.session.commit()
