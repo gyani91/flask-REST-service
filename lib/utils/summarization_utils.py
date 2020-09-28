@@ -77,7 +77,8 @@ def generate_summary(document, top_n=5):
     # print("Indexes of top ranked_sentence order are ", ranked_sentence)
 
     for i in range(top_n):
-        summarize_text.append(" ".join(ranked_sentence[i][1]))
+        if i < len(ranked_sentence):
+            summarize_text.append(" ".join(ranked_sentence[i][1]))
 
     # Step 5 - Offcourse, output the summarize texr
     # print("Summarize Text: \n", ". ".join(summarize_text))

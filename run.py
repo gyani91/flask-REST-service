@@ -87,8 +87,8 @@ class DocumentResource(Resource):
         document = Document.query.get_or_404(document_id)
         return document_schema.dump(document)
 
-    def patch(self, post_id):
-        document = Document.query.get_or_404(post_id)
+    def patch(self, document_id):
+        document = Document.query.get_or_404(document_id)
 
         if 'text' in request.json:
             document.text = request.json['text']
@@ -98,8 +98,8 @@ class DocumentResource(Resource):
         db.session.commit()
         return document_schema.dump(document)
 
-    def delete(self, post_id):
-        document = Document.query.get_or_404(post_id)
+    def delete(self, document_id):
+        document = Document.query.get_or_404(document_id)
         db.session.delete(document)
         db.session.commit()
         return '', 204
