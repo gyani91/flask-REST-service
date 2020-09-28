@@ -63,6 +63,11 @@ curl http://localhost:5000/documents/<document_id>
 curl http://localhost:5000/summary/<document_id>
 ~~~
 
+### Deleting a document
+~~~
+curl http://localhost:5000/documents/<document_id> -X DELETE
+~~~
+
 ### Code standards
 
 Use Python Black formatting:
