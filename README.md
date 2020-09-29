@@ -46,7 +46,10 @@ export FLASK_APP=run.py
 flask run
 ~~~
 
-## Using API with cURL utility
+## Using API
+Open api/document.py the doc strings will be very helpful.
+
+## Using the REST service with cURL utility
 ### Storing a document
 ~~~
 curl http://localhost:5000/documents -X POST -H "Content-Type: application/json" -d '{"text":<contents of the document>}
